@@ -1,129 +1,110 @@
-🛠️ CQRS + MediatR Design Pattern with EF Core - ASP.NET Core Demo
-This is a demo project showcasing the CQRS (Command Query Responsibility Segregation) design pattern implemented using MediatR, Entity Framework Core, and ASP.NET Core Web API. The project demonstrates how to cleanly separate command and query responsibilities, improve scalability, and maintain clean architecture in your .NET applications.
+# 🛠️ CQRS + MediatR Design Pattern with EF Core - ASP.NET Core Demo
 
-📂 Project Structure
-bash
-Copy
-Edit
-MediatRWithEFCoreDemo/
-│
-├── Controllers/
-│   └── ProductsController.cs       # API endpoints for product management
-│
-├── Features/
-│   └── Products/
-│       ├── Commands/
-│       │   ├── CreateProductCommand.cs
-│       │   ├── UpdateProductCommand.cs
-│       │   └── DeleteProductCommand.cs
-│       └── Queries/
-│           ├── GetProductByIdQuery.cs
-│           └── GetAllProductsQuery.cs
-│
-├── Models/
-│   └── Product.cs                  # Entity model
-│
-├── Data/
-│   └── AppDbContext.cs            # EF Core DB Context
-│
-└── Program.cs / Startup.cs        # Application setup
-🚀 Features
-Implements CQRS with MediatR
+This is a demo project that demonstrates how to implement the **CQRS (Command Query Responsibility Segregation)** design pattern using **MediatR**, **Entity Framework Core**, and **ASP.NET Core Web API**. It's structured to show best practices for clean, maintainable, and scalable backend development in .NET.
 
-Uses EF Core for data persistence
+## 📌 Features
 
-RESTful CRUD API for Product entity
+- ✅ CQRS implementation with MediatR
+- ✅ Clean separation of command and query responsibilities
+- ✅ CRUD operations on `Product` entity
+- ✅ Pagination, sorting, and filtering support
+- ✅ Entity Framework Core for data persistence
+- ✅ Swagger UI for API testing and exploration
 
-Supports pagination, sorting, and filtering
+---
 
-Clean separation of concerns
+## 🚀 Tech Stack
 
-Scalable architecture for enterprise apps
+- ASP.NET Core 7
+- Entity Framework Core
+- MediatR
+- SQL Server (or compatible DB)
+- Swagger (Swashbuckle)
 
-🔧 Technologies Used
-ASP.NET Core Web API
+---
 
-Entity Framework Core
+## 📁 Project Structure
 
-MediatR
+MediatRWithEFCoreDemo/ │ ├── Controllers/ │ └── ProductsController.cs # API Endpoints │ ├── Features/ │ └── Products/ │ ├── Commands/ # Create, Update, Delete Commands │ └── Queries/ # GetOne, GetAll Queries │ ├── Models/ │ └── Product.cs # Domain Model │ ├── Data/ │ └── AppDbContext.cs # EF Core DbContext │ └── Program.cs / appsettings.json # App setup and configuration
 
-SQL Server (or any EF Core supported database)
+## 📡 API Endpoints
 
-Swagger (for API documentation)
+| Method | Route                     | Description                     |
+|--------|---------------------------|---------------------------------|
+| GET    | `/api/products`           | Get all products (with filters) |
+| GET    | `/api/products/{id}`      | Get product by ID               |
+| POST   | `/api/products`           | Create new product              |
+| PUT    | `/api/products/{id}`      | Update product                  |
+| DELETE | `/api/products/{id}`      | Delete product                  |
 
-🧪 API Endpoints
-Verb	Endpoint	Description
-GET	/api/products	Get paginated list of products
-GET	/api/products/{id}	Get product by ID
-POST	/api/products	Create a new product
-PUT	/api/products/{id}	Update an existing product
-DELETE	/api/products/{id}	Delete a product
-Query Parameters for GET /api/products:
+**GET /api/products** supports query parameters:
 
-pageNumber (int)
+- `pageNumber` (int) — default: 1  
+- `pageSize` (int) — default: 10  
+- `sortBy` (string) — e.g., `name`, `price`  
+- `ascending` (bool) — true/false  
+- `filterName` (string)  
+- `minPrice`, `maxPrice` (decimal)
 
-pageSize (int)
+---
 
-sortBy (string) – e.g., name, price
+## ⚙️ Getting Started
 
-ascending (bool)
+### Prerequisites
 
-filterName (string)
+- [.NET 7 SDK](https://dotnet.microsoft.com/download)
+- SQL Server (or SQL Server Express/localdb)
 
-minPrice / maxPrice (decimal)
+### Setup Instructions
 
-⚙️ Getting Started
-Prerequisites
-.NET 7 SDK or later
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/sandeeppaldotnet/CQRS-Mediatr-Design-Pattern-WithEFCoreDemo-Aspnetcore.git
+   cd CQRS-Mediatr-Design-Pattern-WithEFCoreDemo-Aspnetcore
 
-SQL Server (local or remote)
+   Update Connection String
+Modify appsettings.json to point to your SQL Server instance.
 
-Setup Instructions
-Clone the Repository
-
-bash
-Copy
-Edit
-git clone https://github.com/sandeeppaldotnet/CQRS-Mediatr-Design-Pattern-WithEFCoreDemo-Aspnetcore.git
-cd CQRS-Mediatr-Design-Pattern-WithEFCoreDemo-Aspnetcore
-Update the DB Connection String
-In appsettings.json, set your connection string under DefaultConnection.
-
-Apply Migrations
+Apply Migrations & Create DB
 
 bash
 Copy
 Edit
 dotnet ef database update
-Run the Application
+Run the Project
 
 bash
 Copy
 Edit
 dotnet run
-Explore Swagger UI Navigate to https://localhost:{port}/swagger in your browser.
+Open Swagger Visit https://localhost:{port}/swagger to test the API.
 
-🧱 Example Payloads
-Create Product (POST):
-
+📦 Sample Payloads
+Create Product (POST)
 json
 Copy
 Edit
 {
-  "name": "Sample Product",
-  "price": 99.99,
-  "description": "A sample product for demo purposes"
+  "name": "Laptop",
+  "price": 799.99,
+  "description": "Powerful laptop for developers"
 }
-Update Product (PUT):
-
+Update Product (PUT)
 json
 Copy
 Edit
 {
   "id": 1,
-  "name": "Updated Product",
-  "price": 149.99,
-  "description": "Updated description"
+  "name": "Laptop Pro",
+  "price": 999.99,
+  "description": "Updated version with more features"
 }
-🙌 Contributions
-Contributions, issues, and feature requests are welcome! Feel free to fork and submit PRs.
+🤝 Contributing
+Feel free to fork this repo, raise issues, and submit pull requests. Contributions are welcome!
+
+📄 License
+This project is licensed under the MIT License.
+
+🙋‍♂️ Author
+Sandeep Pal
+GitHub: @sandeeppaldotnet
